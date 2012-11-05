@@ -1,0 +1,2 @@
+#ARESWEBLOGDEBUG \[%{HTTPDATE:timestamp}\] %{APACHEREQUESTDETAILS} %{IPORHOST:hostname} %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{IPORHOST:clientip} %{QS:agent} (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) (?:%{QS:cookie}|-)
+ARESWEBLOGFULL \[%{HTTPDATE:timestamp}\] %{APACHEREQUESTDETAILS} %{IPORHOST:hostname} %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{IPORHOST:clientip} %{QS:agent} (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) (?:%{QS:cookie}|-)
