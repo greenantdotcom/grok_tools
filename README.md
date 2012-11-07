@@ -33,7 +33,7 @@ And replace it with the values you wish to output. You can output multiple value
 ## Fields which you can output in grok ##
 
 | Key | Description |
-| -- | --- |
+| --- | --- |
 | ARESWEBLOGFULL | Full input line
 | timestamp | Full Apache timestamp
 | MONTHDAY | Day of month |
