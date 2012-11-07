@@ -1,2 +1,18 @@
+### ARES Webserver logging format
+
 #ARESWEBLOGDEBUG \[%{HTTPDATE:timestamp}\] %{APACHEREQUESTDETAILS} %{IPORHOST:hostname} %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{IPORHOST:clientip} %{QS:agent} (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) (?:%{QS:cookie}|-)
 ARESWEBLOGFULL \[%{HTTPDATE:timestamp}\] %{APACHEREQUESTDETAILS} %{IPORHOST:hostname} %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{IPORHOST:clientip} %{QS:agent} (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) (?:%{QS:cookie}|-)
+
+### PIX processing
+
+# PIXLOG out %{IPORHOST:outsideip} in %{IPORHOST:insideip} idle %{TIME:lifetime} #
+
+PIXTCP TCP
+PIXUDP UDP
+PIXCONNPROTO	(?:%{PIXTCP}|%{PIXUDP})
+
+#PIXLOGINPROG %{PIXCONNPROTO:protocol} out %{IPORHOST:outside_host}:%{INT:outside_port} in %{IPORHOST:inside_host}:%{INT:inside_port} idle %{POSINT:hour}:%{POSINT:minute}:%{POSINT:second}(?: bytes %{POSINT:bytes})? flags %{WORD:flags}
+
+# `show conn` log processing
+
+PIXCONNLOG %{PIXCONNPROTO:protocol} out %{IPORHOST:outside_host}:%{INT:outside_port} in %{IPORHOST:inside_host}:%{INT:inside_port} idle %{POSINT:hour}:%{POSINT:minute}:%{POSINT:second}
