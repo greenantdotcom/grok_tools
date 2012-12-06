@@ -87,15 +87,15 @@ And replace it with the values you wish to output. You can output multiple value
 
 ### Showing all IP addresses 
 
-	grok -f ip_with_req.grok.conf | ipgrep -v -m 10.100.2.0/24,10.50.0.0/16,127.0.0.1 | awk '{ print $2 }' | sort -n | uniq -c | sort -nr | head -n 40
+	grok -f ip_with_req.grok.conf | bin/filter_internal_traffic | awk '{ print $2 }' | sort -n | uniq -c | sort -nr | head -n 40
 
 ### Show all IP Addresses for requests for any page where checkInDate is passed in and contains a non-default checkInDate ###
 
-	grok -f ip_with_req.grok.conf | ipgrep -v -m 10.100.2.0/24,10.50.0.0/16,127.0.0.1 | grep checkInDate | grep -v checkInDate=mm | awk '{print $2}' | sort -n | uniq -c | sort -nr | head -n 40
+	grok -f ip_with_req.grok.conf | bin/filter_internal_traffic | grep checkInDate | grep -v checkInDate=mm | awk '{print $2}' | sort -n | uniq -c | sort -nr | head -n 40
 
 ### Show all IP Addresses for requests for any page over certain hours ###
 
-	grok -f ip_with_req.grok.conf | ipgrep -v -m 10.100.2.0/24,10.50.0.0/16,127.0.0.1 | egrep '^(09|10)' | awk '{print $2}' | sort -n | uniq -c | sort -nr | head -n 40
+	grok -f ip_with_req.grok.conf | bin/filter_internal_traffic | egrep '^(09|10)' | awk '{print $2}' | sort -n | uniq -c | sort -nr | head -n 40
 
 ### Show which site was requested the most during the day ###
 
